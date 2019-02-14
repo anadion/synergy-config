@@ -1,0 +1,15 @@
+[Unit]
+Description=Synergy for sharing mouse and keyboard
+After=network.target
+
+[Service]
+Restart=always
+RestartSec=30
+StartLimitInterval=60
+StartLimitBurst=3
+RemainAfterExit=no
+ExecStart=/usr/local/bin/synergy-core --server --name SynergyServer -f -d WARNING -c /etc/synergy.conf -a 127.0.0.1:24800 --log /var/log/synergy.log
+User=%i
+
+[Install]
+WantedBy=multi-user.target

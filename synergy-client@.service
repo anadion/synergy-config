@@ -1,0 +1,13 @@
+[Unit]
+Description=Synergy for sharing mouse and keyboard
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/synergy-core --client --name SynergyClient -f -d WARNING --log /var/log/synergy.log localhost
+User=%i
+
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

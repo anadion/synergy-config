@@ -1,0 +1,14 @@
+[Unit]
+Description=Setup a secure tunnel for Synergy
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ssh -NT -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -L localhost:24800:127.0.0.1:24800 SSH_USER@SYNERGY_SERVER_IP
+User=%i
+
+# Restart every >5 seconds to avoid StartLimitInterval failure
+RestartSec=5
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
